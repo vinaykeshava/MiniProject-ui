@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+    
+{% block content %}
+<div class="main">
+    <div class="imginfo">
+        <div>
+            <img src="{{data['imgdata'].imgUrl}}" alt="">
+        </div>
+        <div>
+            <p>ImageName: {{data['imgdata'].filename}}</p>
+            <p>UserName: {{data['imgdata'].username}}</p>
+            <p>Camara: {{data['imgdata'].camara}}</p>
+            <p>Date: {{data['imgdata'].date}}</p>
+            <p>Time: {{data['imgdata'].time}}</p>
+            <p>Image URL: {{data['imgdata'].imgUrl}}</p>
+        </div>
+    </div>
+</div>
+    <div>
+        <center><button class="btn btn-primary" onclick="compare(value)" value="{{data['imgdata'].filename}}">Compare With Other Photos</button></center>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        function compare(value){
+            var result = fetch('/compareFaces', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "filename": value
+                })
+            });
+            result.then(function(response){
+                return response.json();
+            }).then(function(data){
+                if(data.status == 'success'){
+                    // window.location.href = '/getImgInfo/'+value;
+                    swal(data.msg);
+                }else{
+                    swal(data.msg);
+                }
+            })
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="main">
+    <div class="register">
+        <h3>Sign Up</h3>
+        <form action="">
+            <label for="">Username:</label>
+            <input type="text" class="form-control" name="username" placeholder="Username">
+            <label for="">Number:</label>
+            <input type="number" class="form-control" name="number" placeholder="+91">
+            <label for="">Email:</label>
+            <input type="gmail" class="form-control" name="email" placeholder="xyz@gmail.com">
+            <label for="">Password:</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            <label for="">Confirm Password:</label>
+            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+            <button type="button" class="btn btn-primary" style="margin-top: 5px;" onclick="register()">Sign Up</button>
+        </form>
+    </div>
+</div>
+{% endblock%}
+
+{% block script %}
+<script>
+    function register(){
+        var username = $('input[name="username"]').val();
+        var number = $('input[name="number"]').val();
+        var email = $('input[name="email"]').val();
+        var password = $('input[name="password"]').val();
+        var confirm_password = $('input[name="confirm_password"]').val();
+        result = fetch('/SignUp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                number: number,
+                email: email,
+                password: password,
+                confirm_password: confirm_password
+            })
+        });
+        result.then(function(response){
+            return response.json();
+        }).then(function(data){
+            if(data.status == 'success'){
+                window.location.href = '/Login';
+            }else{
+                swal(data.msg);
+            }
+        })
+    }
+</script>
+{% endblock %}

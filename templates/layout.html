@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CirmeDete</title>
+    <!-- bootstrap cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+    
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <!-- logo -->
+            <div class="logo">
+                <a href="/">
+                    <img src="images/logo.png" alt="logo">
+                </a>
+            </div>
+        </div>
+        <div class="header-right">
+            <nav>
+                <ul>
+                    <!-- <li><a href="/login">Login</a></li>
+                    <li><a href="/register">SignUp</a></li> -->
+                    {% for i in data["l"] %}
+                        <li><a href="/{{i}}">{{i}}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+        <!-- <div class="header-right NoneCls">
+            <nav>
+                <ul>
+                    <li><a href="/database">Database</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </div> -->
+    </div>
+    {% block content %}
+    {% endblock %}
+    <div class="footer">
+        <div class="footer-left">
+            <p>&copy; Copyright 2017</p>
+            <p>Contact Developers From Here</p>
+        </div>
+    </div>
+    <!-- jquery cdb -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {% block script %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+body{
+    background-color: #f2f2f2;
+}
+
+
+.header-right ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.header-right ul li{
+    margin-right: 10px;
+
+}
+
+.NoneCls{
+    display: none;
+}
+
+
+.header{
+    background-color: #00bcd4;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: horizontal;
+}
+
+
+
+
+/* main section */
+.main{
+    background-color: #f2f2f2;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: horizontal;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+
+/* footer */
+.footer{
+    /* place at the bottom of the screen */
+    background-color: #00bcd4;
+    color: white;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: horizontal;
+}
+
+.footer p{
+    margin: 0;
+    padding: 0;
+}
+
+
+.login{
+    padding: 30px ;
+    width: 400px;  
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 10px 10px 10px #888888;
+}
+.login h3{
+    text-align: center;
+    margin: 0;
+    padding: 3px;
+    border-bottom: #888888 1px solid;
+}
+.login form{
+    padding: 30px;    
+    justify-content: center;
+    align-items: center;
+}
+.login input{
+    margin: 10px;
+}
+
+
+.register{
+    padding: 30px ;
+    width: 400px;  
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 10px 10px 10px #888888;
+}
+
+.register h3{
+    text-align: center;
+    margin: 0;
+    padding: 3px;
+    border-bottom: #888888 1px solid;
+}
+.register form{
+    padding: 30px;    
+    justify-content: center;
+    align-items: center;
+}
+.register input{
+    margin: 10px;
+}
+
+
+.images{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.images img{
+    width: 300px;
+    height: 250px;
+}
+
+.imginfo{
+    display: flex;
+    flex-direction: horizontal;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imginfo img{
+    width: 300px;
+    height: 250px;
+    margin-right: 10px;
+}

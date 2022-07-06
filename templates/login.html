@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="main">
+    <div class="login">
+        <h3>Login</h3>
+        <form action="" >
+            <label for="">Email:</label>
+            <input type="gmail" class="form-control" name="email" placeholder="xyz@gmail.com">
+            <label for="">Password:</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            <button type="button" class="btn btn-primary" style="margin-top: 5px;" onclick="login()">Login</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    function login(){
+        var email = $('input[name="email"]').val();
+        var password = $('input[name="password"]').val();
+        result = fetch('/Login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+        result.then(function(response){
+            return response.json();
+        }).then(function(data){
+            if(data.status == 'success'){
+                window.location.href = '/';
+            }else{
+                swal(data.msg);
+            }
+        })
+        }
+</script>
+{% endblock %}
