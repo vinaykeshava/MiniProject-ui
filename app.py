@@ -57,7 +57,7 @@ crimeDeteUsers = mongoclient.crimeDeteUsers
 @app.route('/home')
 def home():
     if "user" in session:
-        return render_template('main.html', data={"l":["Database","Logout"]})
+        return render_template('main.html', data={"l":["database","Logout"]})
     return render_template('main.html', data={"l":["Login","SignUp"]})
 
 @app.route("/SignUp", methods=['GET', 'POST'])
@@ -95,7 +95,7 @@ def login():
             return jsonify({"status":"error","msg": "Invalid email"})
 
 
-@app.route('/Database',methods=['GET', 'POST'])
+@app.route('/database',methods=['GET', 'POST'])
 def database():
     if "user" in session:
         if request.method == "GET":
@@ -103,7 +103,7 @@ def database():
             result = crimeDeteUsers["images"].find({"username":session["user"]})
             for i in result:
                 imgUrlList.append({"url": i["imgUrl"], "filename": i["filename"]})
-            return render_template('database.html', data={"l":["Database","Logout"],
+            return render_template('database.html', data={"l":["database","Logout"],
                                                          "imgUrlList": imgUrlList})
         else:
             return jsonify({"status":"error","msg": "You are not authorized to access this page"})
@@ -125,7 +125,7 @@ def getImgInfo(file):
     if "user" in session:
         if request.method == "GET":
             r = crimeDeteUsers["images"].find_one({"filename": file})
-            return render_template('singleImg.html', data={"l":["Database","Logout"],"imgdata":r })
+            return render_template('singleImg.html', data={"l":["database","Logout"],"imgdata":r })
             
 
 
