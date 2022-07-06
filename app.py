@@ -1,9 +1,7 @@
 import json
-import cv2
 import os
 from flask import Flask, request, jsonify,render_template,redirect,url_for,flash,session,logging
 import pymongo
-from pymongo.mongo_client import MongoClient
 from datetime import timedelta
 import face_recognition
 import pyrebase
@@ -150,7 +148,8 @@ def compareFaces():
         r = crimeDeteUsers["images"].find()
         for i in r:
             imgNameList.append({"filename":i["filename"],"imgUrl":i["imgUrl"]})
-        img1 = cv2.imread("./images/"+filename)
+        # img1 = cv2.imread("./images/"+filename)
+        img1 = face_recognition.load_image_file("./images/"+filename)
         img1encoding = face_recognition.face_encodings(img1)
         for i in imgNameList:
             if i['imgUrl'] != img1url:
@@ -165,7 +164,8 @@ def compareFaces():
                 except:
                     print("Error downloading image")
 
-                img2 = cv2.imread("./images/"+i['filename'])
+                # img2 = cv2.imread("./images/"+i['filename'])
+                img2 = face_recognition.load_image_file("./images/"+i['filename'])
                 img2encoding = face_recognition.face_encodings(img2)
                 for i in img1encoding:
                     for j in img2encoding:
