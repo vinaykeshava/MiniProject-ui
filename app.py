@@ -144,12 +144,14 @@ def compareFaces():
         filename = data['filename']
         img1url = crimeDeteUsers["images"].find_one({"filename": filename})["imgUrl"]
         try:
-            res = requests.get(img1url, stream=True)
-            if res.status_code == 200:
-                with open("./images/"+filename,'wb') as f:
-                    shutil.copyfileobj(res.raw, f)
-                    print('Image sucessfully Downloaded')
-                f.close()
+            storage.child(filename).download(filename,'./images/'+filename)
+            print("Image downloaded")
+            # res = requests.get(img1url, stream=True)
+            # if res.status_code == 200:
+            #     with open("./images/"+filename,'wb') as f:
+            #         shutil.copyfileobj(res.raw, f)
+            #         print('Image sucessfully Downloaded')
+            #     f.close()
         except:
             return jsonify({"status": "error", "msg": "Error downloading image"})
         
@@ -157,19 +159,20 @@ def compareFaces():
         r = crimeDeteUsers["images"].find()
         for i in r:
             imgNameList.append({"filename":i["filename"],"imgUrl":i["imgUrl"]})
-        # img1 = cv2.imread("./images/"+filename)
         img1 = face_recognition.load_image_file("./images/"+filename)
         img1encoding = face_recognition.face_encodings(img1)
         for i in imgNameList:
             if i['imgUrl'] != img1url:
                 try:
-                    res = requests.get(i['imgUrl'], stream=True)
-                    if res.status_code == 200:
-                        with open("./images/"+i['filename'],'wb') as file:
-                            shutil.copyfileobj(res.raw, file)
-                        file.close()
-                    else:                            
-                        print('Image not found')
+                    storage.child(i['filename']).download(i['filename'],'./images/'+i['filename'])
+                    print("other Image downloaded")
+                    # res = requests.get(i['imgUrl'], stream=True)
+                    # if res.status_code == 200:
+                    #     with open("./images/"+i['filename'],'wb') as file:
+                    #         shutil.copyfileobj(res.raw, file)
+                    #     file.close()
+                    # else:                            
+                    #     print('Image not found')
                 except:
                     print("Error downloading image")
 
