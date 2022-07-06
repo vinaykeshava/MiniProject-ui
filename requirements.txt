@@ -13,7 +13,6 @@ cmake==3.22.5
 comtypes==1.1.11
 cryptography==37.0.4
 cycler==0.11.0
-deepface==0.0.75
 Deprecated==1.2.13
 entrypoints==0.3
 face-recognition==1.3.0
@@ -44,8 +43,6 @@ importlib-metadata==4.10.0
 itsdangerous==2.1.2
 joblib==1.1.0
 jwcrypto==1.3.1
-keras==2.7.0
-Keras-Preprocessing==1.1.2
 kiwisolver==1.3.2
 libclang==12.0.0
 Markdown==3.3.6
