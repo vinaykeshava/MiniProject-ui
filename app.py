@@ -105,6 +105,10 @@ def database():
                 imgUrlList.append({"url": i["imgUrl"], "filename": i["filename"]})
             return render_template('database.html', data={"l":["Database","Logout"],
                                                          "imgUrlList": imgUrlList})
+        else:
+            return jsonify({"status":"error","msg": "You are not authorized to access this page"})
+    else:
+        return redirect(url_for("home"))
 
 
 @app.route('/getInfo',methods=['GET', 'POST'])
