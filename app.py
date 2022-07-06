@@ -26,8 +26,12 @@ config = {
     "databaseURL": os.getenv('databaseURL')
 }
 
-firebase = pyrebase.initialize_app(config)
-storage = firebase.storage()
+try:
+    firebase = pyrebase.initialize_app(config)
+    storage = firebase.storage()
+    print("Firebase initialized")
+except:
+    print("Error initializing Firebase")
 
 
 
