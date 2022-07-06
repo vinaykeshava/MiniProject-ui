@@ -41,7 +41,8 @@ app.permanent_session_lifetime = timedelta(days=5)
 try:
     mongoclient = pymongo.MongoClient(MONGODB_CONNECT)
     print("Database connected")
-except:
+except pymongo.errors.ConnectionFailure as e:
+    print("Could not connect to MongoDB: %s" % e)
     print("Error connecting to database")
     exit()
 
